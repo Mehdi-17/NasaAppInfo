@@ -1,15 +1,18 @@
 import React from 'react';
+import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import NasaDataResume from '../components/NasaDataResume';
-
-const categorylist = [
-  { id: '1', categoryName: 'APOD' },
-  { id: '2', categoryName: 'EPIC' },
-  { id: '3', categoryName: 'AsteroidsNeWs' },
-];
+import { categorylist } from '../utils/constants';
 
 const HomeScreen = () => {
   const { container, textStyle, titleView, nasaDataContainer } = styles;
+
+  const openCategoryScreen = (id) => {
+    //TODO Au clique, on ouvre le screen sur la bonne catégorie
+    //Voir si on fait 3 screens différents ou si on fait un screen qu'on met à jour en fonction du touchable cliqué
+    console.log('TouchableOpacity ID => ', id);
+  };
 
   return (
     <View style={container}>
@@ -19,7 +22,10 @@ const HomeScreen = () => {
         </Text>
       </View>
       <View style={nasaDataContainer}>
-        <NasaDataResume categorylist={categorylist} />
+        <NasaDataResume
+          categorylist={categorylist}
+          openCategoryScreen={openCategoryScreen}
+        />
       </View>
     </View>
   );
@@ -42,7 +48,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     textAlign: 'center',
-    color: 'white',
+    color: 'black',
     fontFamily: 'PlayfairBlack',
     fontSize: 22,
   },

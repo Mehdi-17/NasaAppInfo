@@ -1,30 +1,31 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
+import {
+  appBackgroundColor,
+  titleAndDescriptionColor,
+} from '../utils/constants';
 
-const NasaCategory = ({ categoryName }) => {
-  const { container, titleCategoryStyle, descriptionCategoryStyle } = styles;
+const NasaCategory = ({ categoryName, categoryDescription }) => {
+  const { titleCategoryStyle, descriptionCategoryStyle } = styles;
   return (
-    <View style={container}>
+    <View>
       <Text style={titleCategoryStyle}>{categoryName}</Text>
-      <Text style={descriptionCategoryStyle}>Description de la catégorie.</Text>
+      <Text style={descriptionCategoryStyle}>{categoryDescription}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    width: 200,
-    height: 400,
-  },
   titleCategoryStyle: {
-    color: 'white',
-    fontFamily: 'PlayfairMedium',
+    color: titleAndDescriptionColor,
+    fontFamily: 'PlayfairBlack',
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 24,
   },
   descriptionCategoryStyle: {
-    fontSize: 14,
-    color: 'white',
+    marginTop: 5,
+    fontSize: 18,
+    color: titleAndDescriptionColor,
     fontFamily: 'PlayfairItalic',
     textAlign: 'center',
   },
