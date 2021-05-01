@@ -1,13 +1,13 @@
 import React from 'react';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { appBackgroundColor, statusBarHeight } from './utils/constants';
-import HomeScreen from './screens/HomeScreen';
 import * as Font from 'expo-font';
 import { useState, useEffect } from 'react';
+import DrawerNavigatorScreen from './screens/DrawerNavigatorScreen';
 
-const { Navigator, Screen } = createStackNavigator();
+const Stack = createStackNavigator();
 
 export default function App() {
   const [loading, setLoading] = useState(false);
@@ -33,16 +33,19 @@ export default function App() {
   if (loading) {
     return (
       <NavigationContainer>
-        <Navigator
+        <Stack.Navigator
           screenOptions={(options) => {
             return {
-              cardStyle: { backgroundColor: appBackgroundColor, paddingTop: statusBarHeight },
+              cardStyle: {
+                backgroundColor: appBackgroundColor,
+                paddingTop: statusBarHeight,
+              },
               headerShown: false,
             };
           }}
         >
-          <Screen name="Home" component={HomeScreen} />
-        </Navigator>
+          <Stack.Screen name="Drawer" component={DrawerNavigatorScreen}/>
+        </Stack.Navigator>
       </NavigationContainer>
     );
   } else {

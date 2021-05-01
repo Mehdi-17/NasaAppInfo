@@ -1,6 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
-import { createPortal } from 'react-dom';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import NasaDataResume from '../components/NasaDataResume';
 import { categorylist } from '../utils/constants';
