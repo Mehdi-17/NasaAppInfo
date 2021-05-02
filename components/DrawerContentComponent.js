@@ -22,7 +22,7 @@ const DrawerContentComponent = (props) => {
         icon={() => <Ionicons name={`${prefix}-logo-github`} size={32} />}
         label="Mon Github"
         labelStyle={drawerLabelStyle}
-        onPress={() => openUrlOnPhone('https://github.com/Mehdi-17')}
+        onPress={() => openUrlOnPhone('https://github.com/Mehdi-17?tab=repositories')}
       />
       <DrawerItem
         icon={() => <Ionicons name={`${prefix}-logo-linkedin`} size={32} />}
