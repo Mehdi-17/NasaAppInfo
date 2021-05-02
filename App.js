@@ -2,12 +2,14 @@ import React from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { appBackgroundColor, statusBarHeight } from './utils/constants';
+import { appBackgroundColor, appSecondaryColor, titleAndDescriptionColor } from './utils/constants';
 import * as Font from 'expo-font';
 import { useState, useEffect } from 'react';
 import DrawerNavigatorScreen from './screens/DrawerNavigatorScreen';
 
 const Stack = createStackNavigator();
+
+// TODO: styliser le header, ajouter le bouton burger menu
 
 export default function App() {
   const [loading, setLoading] = useState(false);
@@ -38,15 +40,17 @@ export default function App() {
             return {
               cardStyle: {
                 backgroundColor: appBackgroundColor,
-                paddingTop: statusBarHeight,
               },
-              headerShown: false,
-            };
-          }}
+              title: "Space Explorer",
+              headerTitleStyle: styles.headerTitleStyle,
+              headerStyle: styles.headerStyle,
+            }
+          }
+          }
         >
           <Stack.Screen name="Drawer" component={DrawerNavigatorScreen} />
         </Stack.Navigator>
-      </NavigationContainer>
+      </NavigationContainer >
     );
   } else {
     return (
@@ -63,4 +67,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  headerStyle: {
+    backgroundColor: appBackgroundColor,
+  },
+  headerTitleStyle: {
+    textAlign: 'center',
+    fontFamily: 'PlayfairBlack',
+    color: titleAndDescriptionColor,
+    fontSize: 34
+  }
 });
