@@ -44,7 +44,7 @@ export default function App() {
             };
           }}
         >
-          <Stack.Screen name="Drawer" component={DrawerNavigatorScreen}/>
+          <Stack.Screen name="Drawer" component={DrawerNavigatorScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );
