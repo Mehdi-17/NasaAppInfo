@@ -1,3 +1,4 @@
+import { DefaultTheme } from '@react-navigation/native';
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 
@@ -7,10 +8,18 @@ export const appSecondaryColor = '#B0C2B8';
 export const titleAndDescriptionColor = '#333333';
 export const prefix = Platform.OS === 'ios' ? 'ios' : 'md';
 
+export const appTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: appBackgroundColor
+  }
+}
+
 export const categorylist = [
   {
     id: '1',
-    iconName : 'camera',
+    iconName: 'camera',
     categoryName: 'APOD',
     categoryDescription:
       "Astronomy Picture of the Day.\n Découvrez le cosmos!\n Chaque jour, une image ou une photographie différente de notre univers fascinant est présentée, accompagnée d'une brève explication écrite par un astronome professionnel.",

@@ -4,7 +4,7 @@ import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { Ionicons } from '@expo/vector-icons';
 import { prefix } from '../utils/constants';
 
-const DrawerContentComponent = (props) => {
+const DrawerContentComponent = () => {
   const { drawerLabelStyle } = styles;
 
   const openUrlOnPhone = async (url) => {

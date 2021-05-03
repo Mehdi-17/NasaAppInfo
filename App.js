@@ -2,14 +2,17 @@ import React from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { appBackgroundColor, appSecondaryColor, titleAndDescriptionColor } from './utils/constants';
+import { appBackgroundColor, appTheme, titleAndDescriptionColor } from './utils/constants';
 import * as Font from 'expo-font';
 import { useState, useEffect } from 'react';
 import DrawerNavigatorScreen from './screens/DrawerNavigatorScreen';
+import BurgerMenuButton from './components/BurgerMenuButton';
 
 const Stack = createStackNavigator();
 
-// TODO: styliser le header, ajouter le bouton burger menu
+// TODO: j'ai imbriqué les navigtaor dans le mauvais ordre. Pour avoir accès aux openDrawer etc,
+// je dois imbriquer le stack nav dans le drawer, et pas l'inverse 
+// https://reactnavigation.org/docs/nesting-navigators/
 
 export default function App() {
   const [loading, setLoading] = useState(false);
@@ -32,18 +35,17 @@ export default function App() {
     loadRessources();
   }, []);
 
+  
   if (loading) {
     return (
-      <NavigationContainer>
+      <NavigationContainer theme={appTheme}>
         <Stack.Navigator
           screenOptions={(options) => {
             return {
-              cardStyle: {
-                backgroundColor: appBackgroundColor,
-              },
               title: "Space Explorer",
               headerTitleStyle: styles.headerTitleStyle,
               headerStyle: styles.headerStyle,
+              headerLeft: () => (<BurgerMenuButton />)
             }
           }
           }

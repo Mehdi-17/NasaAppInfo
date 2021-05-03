@@ -2,16 +2,15 @@ import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeScreen from './HomeScreen';
 import DrawerContentComponent from '../components/DrawerContentComponent';
-import { appBackgroundColor } from '../utils/constants';
 
 const Drawer = createDrawerNavigator();
-//    a mettre quand j'aurai mis le menu burger dans les screen options :
+//    a mettre quand j'aurai mis le menu burger, dans les screen options :
 // options={{ drawerLockMode: 'locked-closed' }}
 
 const DrawerNavigatorScreen = () => {
   return (
     <Drawer.Navigator
-      drawerContent={(props) => <DrawerContentComponent {...props} />}
+      drawerContent={() => <DrawerContentComponent />}
     >
       <Drawer.Screen
         name="Home"
