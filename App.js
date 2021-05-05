@@ -37,11 +37,10 @@ export default function App(props) {
       <NavigationContainer theme={appTheme}>
         <Drawer.Navigator
           drawerContent={() => <DrawerContentComponent />}
-          options={{ drawerLockMode: 'locked-closed' }}
-          
+          edgeWidth={0}
         >
 
-          <Drawer.Screen name="StackNavigator" component={StackNavigatorScreen} options={{navigation : navigation}} />
+          <Drawer.Screen name="StackNavigator" component={StackNavigatorScreen} options={{ navigation: navigation }} />
         </Drawer.Navigator>
       </NavigationContainer >
     );

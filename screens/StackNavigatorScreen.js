@@ -16,7 +16,7 @@ const StackNavigatorScreen = ({navigation}) => {
           title: "Space Explorer",
           headerTitleStyle: styles.headerTitleStyle,
           headerStyle: styles.headerStyle,
-          headerLeft: () => (<BurgerMenuButton navigation={navigation} />)
+          headerLeft: () => (<BurgerMenuButton navigation={navigation} />),
         }
       }
       }
