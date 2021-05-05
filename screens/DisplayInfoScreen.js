@@ -4,7 +4,7 @@ import { View, Text } from 'react-native';
 // TODO: voir le probleme de unimodules
 
 const DisplayInfoScreen = () => {
-    console.log('My Nasa API key = ', REACT_NATIVE_API_KEY_NASA);
+   // console.log('My Nasa API key = ', REACT_NATIVE_API_KEY_NASA);
     return (
         <View>
             <Text>Ecran info.</Text>
