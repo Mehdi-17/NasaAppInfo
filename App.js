@@ -1,21 +1,18 @@
 import React from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
-import { appBackgroundColor, appTheme, titleAndDescriptionColor } from './utils/constants';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { appTheme } from './utils/constants';
 import * as Font from 'expo-font';
 import { useState, useEffect } from 'react';
-import DrawerNavigatorScreen from './screens/DrawerNavigatorScreen';
-import BurgerMenuButton from './components/BurgerMenuButton';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import DrawerContentComponent from './components/DrawerContentComponent';
+import StackNavigatorScreen from './screens/StackNavigatorScreen';
 
-const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
-// TODO: j'ai imbriqué les navigtaor dans le mauvais ordre. Pour avoir accès aux openDrawer etc,
-// je dois imbriquer le stack nav dans le drawer, et pas l'inverse 
-// https://reactnavigation.org/docs/nesting-navigators/
-
-export default function App() {
+export default function App(props) {
   const [loading, setLoading] = useState(false);
+  const navigation = props.navigation;
 
   const loadRessources = async () => {
     try {
@@ -35,29 +32,23 @@ export default function App() {
     loadRessources();
   }, []);
 
-  
   if (loading) {
     return (
       <NavigationContainer theme={appTheme}>
-        <Stack.Navigator
-          screenOptions={(options) => {
-            return {
-              title: "Space Explorer",
-              headerTitleStyle: styles.headerTitleStyle,
-              headerStyle: styles.headerStyle,
-              headerLeft: () => (<BurgerMenuButton />)
-            }
-          }
-          }
+        <Drawer.Navigator
+          drawerContent={() => <DrawerContentComponent />}
+          options={{ drawerLockMode: 'locked-closed' }}
+          
         >
-          <Stack.Screen name="Drawer" component={DrawerNavigatorScreen} />
-        </Stack.Navigator>
+
+          <Drawer.Screen name="StackNavigator" component={StackNavigatorScreen} options={{navigation : navigation}} />
+        </Drawer.Navigator>
       </NavigationContainer >
     );
   } else {
     return (
       <View style={styles.container}>
-        <ActivityIndicator />
+        <ActivityIndicator size="large" />
       </View>
     );
   }
@@ -68,14 +59,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  headerStyle: {
-    backgroundColor: appBackgroundColor,
-  },
-  headerTitleStyle: {
-    textAlign: 'center',
-    fontFamily: 'PlayfairBlack',
-    color: titleAndDescriptionColor,
-    fontSize: 34
   }
 });
